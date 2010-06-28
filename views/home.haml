@@ -1,0 +1,7 @@
+.spacer
+.game
+  -@game.state.each do |row|
+    .row
+      -row.each do |cell|
+        .cell{:class => (cell == 0 ? "dead" : "alive")}
+.spacer

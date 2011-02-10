@@ -1,0 +1,19 @@
+-$current.state.each_with_index do |row, y|
+  .row
+    -row.each_with_index do |cell, x|
+      .cell.current{:class => (cell == 0 ? "dead" : "alive"), :id => x.to_s+y.to_s+"c"}>
+        %input{:type => "checkbox", :style => "display: none", :checked => (cell == 0 ? nil : "checked"), :id => x.to_s+y.to_s}
+        
+:javascript
+  $(document).ready(function(){
+    $('.cell.current').click(function(){
+      if ($(this).hasClass('alive')) {
+        $(this).removeClass('alive').addClass('dead');
+        $('#'+this.id.slice(0, -1)).attr('checked', false);
+        
+      } else {
+        $(this).removeClass('dead').addClass('alive');
+        $('#'+this.id.slice(0, -1)).attr('checked', true);
+      }
+    });
+  });

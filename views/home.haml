@@ -1,7 +1,91 @@
-.spacer
-.game
-  -@game.state.each do |row|
-    .row
-      -row.each do |cell|
-        .cell{:class => (cell == 0 ? "dead" : "alive")}
-.spacer
+#size{:style => "display: none"}= $current.size.to_s
+#running{:style => "display: none"}= 0
+#rate{:style => "display: none"}= 1000
+.center
+  %br
+  .frame
+    #output
+      -$current.state.each_with_index do |row, y|
+        .row
+          -row.each_with_index do |cell, x|
+            .cell.current{:class => (cell == 0 ? "dead" : "alive"), :id => x.to_s+y.to_s+"c"}>
+              %input{:type => "checkbox", :style => "display: none", :checked => (cell == 0 ? nil : "checked"), :id => x.to_s+y.to_s}
+    %br
+    %a.awesome.red#start{:href => "#start"} Two Steps/Second
+    %a.awesome.blue#previous{:href => "#previous"} Previous
+    %a.awesome.blue#evolve{:href => "#evolve"} Next
+    %a.awesome.blue#random{:href => "#random"} Random
+    %a.awesome.blue#clear{:href => "#clear"} Clear
+    
+:javascript
+  $(document).ready(function(){
+    $('.cell.current').click(function(){
+      if ($(this).hasClass('alive')) {
+        $(this).removeClass('alive').addClass('dead');
+        $('#'+this.id.slice(0, -1)).attr('checked', false);
+        
+      } else {
+        $(this).removeClass('dead').addClass('alive');
+        $('#'+this.id.slice(0, -1)).attr('checked', true);
+      }
+    });
+    
+    function repeat_evolve() {
+      var running = parseInt($("#running").html());
+      if (running == 1){
+        evolve();
+        $.timer(500,function(){
+            repeat_evolve();
+        });
+        
+        return false;
+      }
+      return false;
+    }
+    
+    function evolve (){
+      var size = parseInt($("#size").html());
+      var output = "";
+      for (j = 0; j < size; j++){
+        for (i = 0; i < size; i++){
+          if ($('#' + j + '' + i).attr('checked') == true) {
+            output = output + "1"
+          } else {
+            output = output + "0"
+          }
+        }
+      }
+      $("#output").load(("/async/custom/"+output), null);
+      return false;
+    }
+    
+    $('#evolve').click(function(){
+      return evolve();
+    });
+    
+    $('#random').click(function(){
+        $("#output").load(("/async/random"), null);
+        return false;
+    });
+    $('#clear').click(function(){
+        $("#output").load(("/async/clear"), null);
+        return false;
+    });
+    
+    $('#previous').click(function(){
+        $("#output").load(("/async/previous"), null);
+        return false;
+    });
+    
+    $('#start').click(function(){
+      var running = parseInt($("#running").html());
+      if (running == 1){      
+        $("#start").html("Two Steps/Second");
+        $("#running").html("0");
+      } else {        
+        $("#start").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+        $("#running").html("1");
+        return repeat_evolve();
+      }
+    });
+  });

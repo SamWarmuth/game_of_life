@@ -28,26 +28,26 @@ class GameOfLifeTest < Test::Unit::TestCase
   def test_should_kill_with_no_neighbours
     @game.state = [[1,0,0],[0,0,0],[0,0,0]]
     after = @game.evolve
-    assert_equal after[0][0], 0
+    assert_equal 0, after.state[0][0]
   end
 
   def test_should_kill_with_just_one_neighbour
     @game.state = [[0,0,0],[1,0,0],[1,0,0]]
     after = @game.evolve
-    assert_equal after[1][0], 0
-    assert_equal after[2][0], 0
+    assert_equal 0, after.state[1][0]
+    assert_equal 0, after.state[2][0]
   end
 
   def test_should_kill_with_more_than_3_neighbours
     @game.state = [[1,1,1],[1,1,1],[1,1,1]]
     after = @game.evolve
-    assert_equal after, [[0,0,0],[0,0,0],[0,0,0]]
+    assert_equal [[0,0,0],[0,0,0],[0,0,0]], after.state
   end
 
   def test_should_give_birth_if_3_neighbours
     @game.state = [[1,0,0],[1,1,0],[0,0,0]]
     after = @game.evolve
-    assert_equal after, [[1,1,1],[1,1,1],[1,1,1]]
+    assert_equal [[1,1,1],[1,1,1],[1,1,1]], after.state
   end
 
 end

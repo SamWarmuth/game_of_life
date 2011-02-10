@@ -1,7 +1,21 @@
+body
+  background-color: #9D9
+.frame
+  -webkit-border-radius: 20px
+  -moz-border-radius: 20px
+  border-radius: 20px
+  padding: 10px
+  background-color: #FFF
+  display: inline-block
+  -webkit-box-shadow: 2px 2px 10px #000
+  -moz-box-shadow: 2px 2px 10px #000
+  box-shadow: 2px 2px 10px #000
 .cell
   display: inline-block
-  width: 20px
-  height: 20px
+  width: 15px
+  height: 15px
+  margin: 1px
+  padding: 0
   -webkit-border-radius: 5px
   -moz-border-radius: 5px
   border-radius: 5px
@@ -9,7 +23,140 @@
   &.dead
     background-color: #FFF
   &.alive
-    background-color: #555
+    background-color: #5A5
 .row
   margin: 0
+  padding: 0
+  
+/* slider root element */
+.slider
+  background: #5A5
+  height: 9px 
+  position: relative 
+  cursor: pointer
+  border: 1px solid #333
+  width: 450px
+  float: left
+  clear: right
+  margin-top: 10px
+  margin-left: 30%
+  -moz-border-radius: 5px 
+  -webkit-border-radius: 5px 
+  -moz-box-shadow: inset 0 0 8px #000
+
+
+.gen_container
+  clear: both
+  position: relative
+  top: 30px
+  font-size: 14px
+  text-decoration: none
+  color: black
+  
+
+/* progress bar (enabled with progress:  true) */
+.progress
+  height: 9px
+  background-color: #C5FF00
+  display: none
+  opacity: 0.6
+  
+/* drag handle */
+.handle  
+  text-decoration: none
+  background-image: url('images/slider.png')
+  width: 120px
+  height: 98px
+  top: -22px
+  position: absolute 
+  display: block 
+  margin-top: 20px
+
+
+/* the input field */
+.range
+  border: 1px inset #ddd
+  float: left
+  font-size: 25px
+  margin: 35px 0 40px 15px
+  padding-left: 20px
+  background: none
+  border: none
+  text-align: center
+  width: 50px
+  display: none
+  
+  
+  
+  
+  
+  
+  
+  
+  
+.awesome, .awesome:visited 
+  border: none
+  background: #222 url(/images/alert-overlay.png) repeat-x 
+  display: inline-block 
+  padding: 5px 10px 6px 
+  color: #fff 
+  text-decoration: none
+  -moz-border-radius: 5px 
+  -webkit-border-radius: 5px
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5)
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5)
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25)
+  border-bottom: 1px solid rgba(0,0,0,0.25)
+  position: relative
+  cursor: pointer
+  
+.awesome:hover
+  background-color: #111
+  color: #fff
+.awesome:active
+  top: 1px
+.small.awesome, .small.awesome:visited
+  font-size: 11px
+  padding: 0
+.medium.awesome, .medium.awesome:visited
+  font-size: 13px
+  font-weight: bold
+  line-height: 1
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25)
+.large.awesome, .large.awesome:visited
+  font-size: 14px
+  padding: 8px 14px 9px
+.green.awesome, .green.awesome:visited
+  background-color: #91bd09
+.green.awesome:hover
+  background-color: #749a02
+.blue.awesome, .blue.awesome:visited
+  background-color: #2daebf
+.blue.awesome:hover
+  background-color: #007d9a
+.red.awesome, .red.awesome:visited
+  background-color: #e33100
+.red.awesome:hover
+  background-color: #872300
+.magenta.awesome, .magenta.awesome:visited
+  background-color: #a9014b
+.magenta.awesome:hover
+  background-color: #630030
+.orange.awesome, .orange.awesome:visited
+  background-color: #ff5c00
+.orange.awesome:hover
+  background-color: #d45500
+.yellow.awesome, .yellow.awesome:visited
+  background-color: #ffb515
+.yellow.awesome:hover
+  background-color: #fc9200
+
+.center
+  text-align: center
+  margin: auto
+.clear
+  clear: both
 .spacer
+  clear: both
+  height: 50px
+  
